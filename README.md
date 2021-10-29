@@ -3,7 +3,9 @@
 When loading navigation properties with .Include() it does not load properties when a defaul property is set on the property trying to be included.
 
 In this example, in PersonInstance.cs has a navigation property with a defaul value:
-``` public Blob Blob { get; set; } = new Blob(); ```
+```
+public Blob Blob { get; set; } = new Blob();
+```
 
 When calling EF in BlobController.cs:
 ```
