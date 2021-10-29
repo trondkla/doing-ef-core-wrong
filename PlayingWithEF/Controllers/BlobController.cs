@@ -22,15 +22,19 @@ namespace PlayingWithEF.Controllers
         [HttpGet("{id}")]
         public ActionResult<Blob> Get(string id)
         {
+            if (!long.TryParse(id, out long idLong))
+            {
+                return NotFound();
+            }
+
             var blobs = _context
                 .Blobs
                 .Include(b => b.PersonInstance)
-                .Take(5)
-                .ToList();
+                .FirstOrDefault(b => b.Id == idLong);
             
-            var post = blobs.First().PersonInstance;
+            var post = blobs.PersonInstance;
             // Post is null. If you remove = new Post from User.cs, it will be populated
-            
+            // This is just a constructed example, Post should not be returned :P
             if (post == null)
             {
                 return NotFound();

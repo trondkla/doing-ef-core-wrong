@@ -10,6 +10,6 @@ namespace PlayingWithEF.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
-        [JsonIgnore] public Blob Blob { get; set; } = new Blob();
+        [JsonIgnore] public Blob Blob { get; set; } = new Blob(); // TODO removing new Blob() fixes the problem
     }
 }
