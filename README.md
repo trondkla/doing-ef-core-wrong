@@ -22,3 +22,8 @@ If I remove ` = new Blob();` everything works as expected.
 
 Only recreated on SQL Provider nuget package `Microsoft.EntityFrameworkCore.SqlServer`, both on 5.0.11 and 3.1.14.
 Not a problem in `Microsoft.EntityFrameworkCore.InMemory`
+
+# How to start project?
+In PlayingWithEF you find a project that will fail loading the navigation property in the BlobController.cs if you access the url: /Blob/1
+You can create tables and data by running `CreateDb.sql` on an empty Db.
+Remember to change the db name in appsettings.json to match
