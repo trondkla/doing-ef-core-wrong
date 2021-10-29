@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using PlayingWithEF.Models;
 
 namespace PlayingWithEF.Controllers
 {
@@ -19,21 +20,22 @@ namespace PlayingWithEF.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<User> Get(string id)
+        public ActionResult<Blob> Get(string id)
         {
-            var user = _context
-                .Users
-                .Include(u => u.Post)
-                .FirstOrDefault(u => u.Id == long.Parse(id));
+            var blobs = _context
+                .Blobs
+                .Include(b => b.PersonInstance)
+                .Take(5)
+                .ToList();
             
-            var post = user.Post;
+            var post = blobs.First().PersonInstance;
             // Post is null. If you remove = new Post from User.cs, it will be populated
             
-            if (user == null)
+            if (post == null)
             {
                 return NotFound();
             }
-            return Ok(user);
+            return Ok(post);
         }
     }
 }

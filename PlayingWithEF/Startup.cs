@@ -24,12 +24,8 @@ namespace PlayingWithEF
             var connectionString = 
 
             services.AddDbContext<ApiContext>(opt =>
-                //opt.UseSqlServer(Configuration.GetConnectionString("TestDb")));
-                opt.UseInMemoryDatabase("test-problems-with-ef"));
-
-
-            var apiContext = services.BuildServiceProvider().GetService<ApiContext>();
-            AddTestData(apiContext);
+                opt.UseSqlServer(Configuration.GetConnectionString("TestDb")));
+                //opt.UseInMemoryDatabase("test-problems-with-ef"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,27 +47,5 @@ namespace PlayingWithEF
                 endpoints.MapControllers();
             });
         }
-
-
-        private static void AddTestData(ApiContext context)
-        {
-            var testUser1 = new User
-            {
-                Id = 123,
-            };
-
-            context.Users.Add(testUser1);
-
-            var testPost1 = new Post
-            {
-                Id = 567,
-                UserId = testUser1.Id,
-                Content = "What a piece of junk!"
-            };
-
-            context.Posts.Add(testPost1);
-            context.SaveChanges();
-        }
-
     }
 }

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using PlayingWithEF.Models;
 
 namespace PlayingWithEF
 {
@@ -8,25 +9,19 @@ namespace PlayingWithEF
             : base(options)
         {
         }
-
-        public DbSet<User> Users { get; set; }
-
-        public DbSet<Post> Posts { get; set; }
+        public DbSet<Blob> Blobs { get; set; }
+        public DbSet<PersonInstance> PersonInstances { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<User>()
-                .HasOne(u => u.Post)
-                .WithOne(p => p.User)
-                .HasForeignKey<Post>(p => p.UserId);
+            modelBuilder.Entity<PersonInstance>()
+                .HasOne(p => p.Blob)
+                .WithOne(p => p.PersonInstance)
+                .HasForeignKey<Blob>(b => b.PersonInstanceId);
 
-            modelBuilder.Entity<Post>()
-                .HasOne(p => p.User)
-                .WithOne(u => u.Post)
-                .HasForeignKey<User>(u => u.PostId);
         }
     }
 }
