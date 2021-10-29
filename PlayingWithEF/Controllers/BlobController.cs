@@ -8,12 +8,12 @@ namespace PlayingWithEF.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UserController : ControllerBase
+    public class BlobController : ControllerBase
     {
-        private readonly ILogger<UserController> _logger;
+        private readonly ILogger<BlobController> _logger;
         private readonly ApiContext _context;
 
-        public UserController(ApiContext context, ILogger<UserController> logger)
+        public BlobController(ApiContext context, ILogger<BlobController> logger)
         {
             _logger = logger;
             _context = context;
