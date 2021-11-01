@@ -1,5 +1,10 @@
 # Recreation of EF SQL Provider not loading Navigation Properties bug?
 
+## TL;DR
+https://stackoverflow.com/questions/20757594/ef-codefirst-should-i-initialize-navigation-properties
+Do not initialize navigation properties.
+
+## The original problem
 When loading navigation properties with .Include() it does not load properties when a defaul property is set on the property trying to be included.
 
 In this example, in PersonInstance.cs has a navigation property with a defaul value:
